@@ -74,7 +74,7 @@ export const Skill_data = [
     {
       name: "Instagram",
       src: "/instagram.svg",
-      link:"https://www.instagram.com/floor.bunny/",
+      link:"https://www.instagram.com/maisontchetty/",
     },
     // {
     //   name: "Facebook",
