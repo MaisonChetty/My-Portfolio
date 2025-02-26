@@ -44,6 +44,18 @@ const Footer = () => {
             <p className="flex flex-row items-center my-[15px] cursor-pointer">
               <span className="text-[15px] ml-[6px]">maisonchetty4@gmail.com</span>    
             </p>
+            <p className="flex flex-row items-center my-[15px] cursor-pointer">
+              <span className="text-[15px] ml-[6px]">South Africa</span>    
+            </p>
+            <p className="flex flex-row items-center my-[15px] cursor-pointer">
+              <span className="text-[15px] ml-[6px]">Gauteng</span>    
+            </p>
+            <p className="flex flex-row items-center my-[15px] cursor-pointer">
+              <span className="text-[15px] ml-[6px]">Johannesburg</span>    
+            </p>
+            <p className="flex flex-row items-center my-[15px] cursor-pointer">
+              <span className="text-[15px] ml-[6px]">+27 76 235 6734</span>    
+            </p>
           </div>
         </div>
       </div>
