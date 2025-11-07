@@ -1,90 +1,139 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 function ContactForm() {
-    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [loading, setLoading] = useState(false);
 
-        formData.append("access_key", "cc84c48c-340d-4bee-88f3-9a4f71ac06ab");
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setLoading(true);
+    setStatus("idle");
 
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
+    const formData = new FormData(event.currentTarget);
 
-        const res = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: json
-        }).then((res) => res.json());
-
-        if (res.success) {
-            console.log("Success", res);
-        }
-    };
-
-    return (
-        <motion.div 
-            className="max-w-2xl mx-auto p-6 bg-transparent shadow-lg rounded-lg mt-8" 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
-            transition={{ duration: 0.6 }}
-        >
-            <form className="mt-5" onSubmit={onSubmit}>
-                <div className="flex gap-6 my-3">
-                    <div className="w-1/2">
-                        <motion.input
-                            type="text"
-                            placeholder="First Name"
-                            className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                            name="name"
-                            initial={{ x: -50, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 0.5 }}
-                            required
-                        />
-                    </div>
-                    <div className="w-1/2">
-                        <motion.input
-                            type="email"
-                            placeholder="E-mail"
-                            name="email"
-                            className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                            initial={{ x: 50, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 0.5 }}
-                            required
-                        />
-                    </div>
-                </div>
-
-                <div className="my-3">
-                    <motion.textarea
-                        className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all min-h-32"
-                        placeholder="Message"
-                        name="message"
-                        initial={{ y: 50, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                        required
-                    />
-                </div>
-
-                <div className="flex items-center justify-center mt-6">
-                    <motion.button
-                        type="submit"
-                        className="bg-indigo-600 text-white hover:bg-indigo-700 py-2 px-4 rounded-lg shadow-md uppercase tracking-wider transition-all ease-linear"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Send Message
-                    </motion.button>
-                </div>
-            </form>
-        </motion.div>
+    // Use environment variable for Web3Forms access key
+    formData.append(
+      "access_key",
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY as string
     );
+    formData.append("subject", "New message from your website");
+    formData.append("from_name", formData.get("name") as string);
+    formData.append("reply_to", formData.get("email") as string);
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      }).then((res) => res.json());
+
+      if (res.success) {
+        setStatus("success");
+        event.currentTarget.reset();
+      } else {
+        setStatus("error");
+        console.error("Web3Forms error:", res);
+      }
+    } catch (error) {
+      setStatus("error");
+      console.error("Form submission failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <motion.div
+      className="max-w-2xl mx-auto p-6 bg-transparent shadow-lg rounded-lg mt-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+    >
+      <form className="mt-5" onSubmit={onSubmit}>
+        <div className="flex gap-6 my-3 flex-col sm:flex-row">
+          <div className="flex-1">
+            <motion.input
+              type="text"
+              placeholder="First Name"
+              name="name"
+              className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+              required
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            />
+          </div>
+          <div className="flex-1">
+            <motion.input
+              type="email"
+              placeholder="E-mail"
+              name="email"
+              className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+              required
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            />
+          </div>
+        </div>
+
+        <div className="my-3">
+          <motion.textarea
+            name="message"
+            placeholder="Message"
+            className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all min-h-32"
+            required
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          />
+        </div>
+
+        <div className="flex items-center justify-center mt-6">
+          <motion.button
+            type="submit"
+            disabled={loading}
+            className={`bg-indigo-600 text-white hover:bg-indigo-700 py-2 px-4 rounded-lg shadow-md uppercase tracking-wider transition-all ease-linear ${
+              loading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {loading ? "Sending..." : "Send Message"}
+          </motion.button>
+        </div>
+
+        {/* Animated feedback messages */}
+        {status === "success" && (
+          <motion.p
+            className="text-green-400 text-center mt-4"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Message sent successfully! Check your email.
+          </motion.p>
+        )}
+        {status === "error" && (
+          <motion.p
+            className="text-red-500 text-center mt-4"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Something went wrong. Please try again.
+          </motion.p>
+        )}
+      </form>
+    </motion.div>
+  );
 }
 
 export default ContactForm;

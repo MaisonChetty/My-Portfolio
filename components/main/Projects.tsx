@@ -2,65 +2,97 @@
 
 import React from "react";
 import ProjectCard from "../sub/ProjectCard";
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 const Projects = () => {
-  // Array to store project data
   const projects = [
     {
-      src: "/bluestorm (1).PNG",
+      src: encodeURI("/bluestorm (1).PNG"),
       title: "BlueStorm",
-      description: "A sleek and amazing Wordpress website using the latest and greates Wordpress offers and more ",
+      description:
+        "A sleek and amazing Wordpress website using the latest and greatest Wordpress offers and more.",
       link: "https://bluestormgifts.co.za",
     },
     {
-      src: "/hydro (1).PNG",
+      src: encodeURI("/hydro (1).PNG"),
       title: "Hydro Fuel",
-      description: "A website where water is used to help lower the cost of fuel in cars",
+      description:
+        "A website where water is used to help lower the cost of fuel in cars.",
       link: "https://hydrofuel.vercel.app",
     },
     {
-      src: "/met (1).PNG",
-      title: "Meteverse Challenge",
-      description: "This was one of my first websites i had created from wathing sonny sangha",
+      src: encodeURI("/met (1).PNG"),
+      title: "Metaverse Challenge",
+      description:
+        "This was one of my first websites I had created from watching Sonny Sangha.",
       link: "https://metaverse-challenge-one.vercel.app",
     },
-    // {
-    //   src: "/SpaceWebsite.png",
-    //   title: "Space Themed Website",
-    //   description: "A futuristic space exploration website with immersive visuals.",
-    //   link: "https://www.youtube.com/watch?v=0siQoaXMmzk&t=9s",
-    // },
-    // You can add new projects here
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center py-20 w-full z-20" id="projects">
-      <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-10">
+    <section
+      id="projects"
+      className="flex flex-col items-center justify-center py-20 w-full z-20"
+    >
+      <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-10 text-center">
         My Projects
       </h1>
 
-      {/* Carousel with working navigation */}
-      <Carousel className="w-full max-w-3xl">
-        <CarouselContent className="flex">
-          {/* Map through the projects array and create a CarouselItem for each project */}
-          {projects.map((project, index) => (
-            <CarouselItem key={index} className="w-full flex justify-center">
-              <ProjectCard
-                src={project.src}
-                title={project.title}
-                description={project.description}
-                link={project.link}
-              />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
+      {/* Carousel wrapper */}
+      <div className="relative w-full max-w-5xl px-8 flex justify-center items-center">
+        <Carousel
+          className="w-full"
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+        >
+          <CarouselContent className="min-h-[520px]">
+            {projects.map((project, index) => (
+              <CarouselItem
+                key={index}
+                className="flex justify-center items-center md:basis-full"
+              >
+                <div className="w-full max-w-[600px]">
+                  <ProjectCard
+                    src={project.src}
+                    title={project.title}
+                    description={project.description}
+                    link={project.link}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
 
-        {/* Navigation Buttons */}
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-    </div>
+          {/* Arrows */}
+          <CarouselPrevious
+            className="absolute -left-14 top-1/2 -translate-y-1/2 transform z-10
+                       bg-gradient-to-r from-purple-700 to-cyan-600 text-white
+                       shadow-[0_0_15px_rgba(139,92,246,0.7)]
+                       hover:shadow-[0_0_25px_rgba(34,211,238,0.9)]
+                       hover:scale-105 transition-all duration-300 ease-in-out
+                       rounded-full p-3 backdrop-blur-md border border-purple-400/50
+                       w-12 h-12 flex items-center justify-center"
+          />
+          <CarouselNext
+            className="absolute -right-14 top-1/2 -translate-y-1/2 transform z-10
+                       bg-gradient-to-r from-cyan-600 to-purple-700 text-white
+                       shadow-[0_0_15px_rgba(34,211,238,0.7)]
+                       hover:shadow-[0_0_25px_rgba(139,92,246,0.9)]
+                       hover:scale-105 transition-all duration-300 ease-in-out
+                       rounded-full p-3 backdrop-blur-md border border-cyan-400/50
+                       w-12 h-12 flex items-center justify-center"
+          />
+        </Carousel>
+      </div>
+    </section>
   );
 };
 
