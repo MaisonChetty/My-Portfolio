@@ -1,18 +1,19 @@
+"use client";
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [result, setResult] = useState<"" | "success" | "error">("");
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    setStatus("idle");
+    setResult("");
 
     const formData = new FormData(event.currentTarget);
-
-    // Use environment variable for Web3Forms access key
+    // Use environment variable for access key
     formData.append(
       "access_key",
       process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY as string
@@ -21,29 +22,23 @@ function ContactForm() {
     formData.append("from_name", formData.get("name") as string);
     formData.append("reply_to", formData.get("email") as string);
 
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: json,
-      }).then((res) => res.json());
+        body: formData,
+      });
 
-      if (res.success) {
-        setStatus("success");
+      const data = await response.json();
+      if (data.success) {
+        setResult("success");
         event.currentTarget.reset();
       } else {
-        setStatus("error");
-        console.error("Web3Forms error:", res);
+        console.error("Web3Forms error:", data);
+        setResult("error");
       }
     } catch (error) {
-      setStatus("error");
-      console.error("Form submission failed:", error);
+      console.error("Submission failed:", error);
+      setResult("error");
     } finally {
       setLoading(false);
     }
@@ -57,44 +52,38 @@ function ContactForm() {
       transition={{ duration: 0.6 }}
     >
       <form className="mt-5" onSubmit={onSubmit}>
-        <div className="flex gap-6 my-3 flex-col sm:flex-row">
-          <div className="flex-1">
-            <motion.input
-              type="text"
-              placeholder="First Name"
-              name="name"
-              className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-              required
-              initial={{ x: -50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            />
-          </div>
-          <div className="flex-1">
-            <motion.input
-              type="email"
-              placeholder="E-mail"
-              name="email"
-              className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-              required
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            />
-          </div>
-        </div>
-
-        <div className="my-3">
-          <motion.textarea
-            name="message"
-            placeholder="Message"
-            className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all min-h-32"
+        <div className="flex flex-col sm:flex-row gap-6 my-3">
+          <motion.input
+            type="text"
+            name="name"
+            placeholder="First Name"
+            className="flex-1 w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
             required
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          />
+          <motion.input
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            className="flex-1 w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+            required
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
           />
         </div>
+
+        <motion.textarea
+          name="message"
+          placeholder="Message"
+          className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all min-h-32 my-3"
+          required
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        />
 
         <div className="flex items-center justify-center mt-6">
           <motion.button
@@ -110,8 +99,8 @@ function ContactForm() {
           </motion.button>
         </div>
 
-        {/* Animated feedback messages */}
-        {status === "success" && (
+        {/* Feedback messages */}
+        {result === "success" && (
           <motion.p
             className="text-green-400 text-center mt-4"
             initial={{ opacity: 0, y: -10 }}
@@ -121,7 +110,7 @@ function ContactForm() {
             Message sent successfully! Check your email.
           </motion.p>
         )}
-        {status === "error" && (
+        {result === "error" && (
           <motion.p
             className="text-red-500 text-center mt-4"
             initial={{ opacity: 0, y: -10 }}
