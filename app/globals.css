@@ -68,16 +68,9 @@
 }
 
 
-
 html {
   scroll-behavior: smooth;
 }
-
-
-
-
-
-
 
 @layer base {
   :root {
@@ -134,11 +127,6 @@ html {
     --chart-5: 340 75% 55%;
   }
 }
-
-
-
-
-
 
 
 @layer base {

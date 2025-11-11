@@ -48,7 +48,7 @@ function ContactForm() {
 
   return (
     <motion.div
-      className="max-w-2xl mx-auto p-6 bg-transparent shadow-lg rounded-lg mt-8"
+      className="max-w-2xl mx-auto p-6 bg-transparent shadow-lg rounded-lg mt-8 z-1"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}

@@ -1,12 +1,11 @@
 "use client"
 import React from 'react'
 import {motion} from 'framer-motion'
-import { slideInFromLeft, slideInFromRight, slideInFromTop } from '@/utils/motion'
-import { SparklesIcon } from '@heroicons/react/24/solid'
+import { slideInFromLeft, slideInFromRight} from '@/utils/motion'
 
 const SkillText = () => {
   return (
-    <div className='w-full h-auto flex flex-col items-center justify-center pt-6'>
+    <div className='w-full h-auto flex flex-col items-center justify-center pt-6 z-[50]'>
 
       <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-10">
         My Skills
