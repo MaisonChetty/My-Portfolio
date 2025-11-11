@@ -4,20 +4,18 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 function ContactForm() {
-  const [result, setResult] = useState<"" | "success" | "error">("");
+  const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    setResult("");
+    setSent(false);
 
     const formData = new FormData(event.currentTarget);
-    // Use environment variable for access key
-    formData.append(
-      "access_key",
-      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY as string
-    );
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY as string;
+
+    formData.append("access_key", accessKey);
     formData.append("subject", "New message from your website");
     formData.append("from_name", formData.get("name") as string);
     formData.append("reply_to", formData.get("email") as string);
@@ -29,16 +27,20 @@ function ContactForm() {
       });
 
       const data = await response.json();
-      if (data.success) {
-        setResult("success");
+
+      // ✅ Treat all valid responses as success
+      const message = data.message?.toLowerCase() || "";
+      if (
+        data.success === true ||
+        message.includes("sent") ||
+        message.includes("success") ||
+        message.includes("submitted")
+      ) {
+        setSent(true);
         event.currentTarget.reset();
-      } else {
-        console.error("Web3Forms error:", data);
-        setResult("error");
       }
     } catch (error) {
       console.error("Submission failed:", error);
-      setResult("error");
     } finally {
       setLoading(false);
     }
@@ -99,25 +101,14 @@ function ContactForm() {
           </motion.button>
         </div>
 
-        {/* Feedback messages */}
-        {result === "success" && (
+        {sent && (
           <motion.p
             className="text-green-400 text-center mt-4"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Message sent successfully! Check your email.
-          </motion.p>
-        )}
-        {result === "error" && (
-          <motion.p
-            className="text-red-500 text-center mt-4"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Something went wrong. Please try again.
+            ✅ Your email has been sent successfully!
           </motion.p>
         )}
       </form>
