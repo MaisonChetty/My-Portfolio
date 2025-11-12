@@ -19,6 +19,20 @@ const Projects = () => {
         "A sleek and amazing Wordpress website using the latest and greatest Wordpress offers and more.",
       link: "https://bluestormgifts.co.za",
     },
+        {
+      src: encodeURI("/saas.PNG"),
+      title: "Pdf AI conversationalist",
+      description:
+        "This was my first ever AI web application and I am so proud of how it turned out #PAPFAM",
+      link: "https://saas-eta-three.vercel.app/",
+    },
+        {
+      src: encodeURI("/AI.PNG"),
+      title: "AI YouTube Transcriptor",
+      description:
+        "This was one of the most interesting and thrilling AI webapplications I built",
+      link: "https://ai-agent-gamma-beryl.vercel.app",
+    },
     {
       src: encodeURI("/hydro (1).PNG"),
       title: "Hydro Fuel",
@@ -30,9 +44,10 @@ const Projects = () => {
       src: encodeURI("/met (1).PNG"),
       title: "Metaverse Challenge",
       description:
-        "This was one of my first websites I had created from watching Sonny Sangha.",
+        "This is one of my first websites I had created from watching Sonny Sangha.",
       link: "https://metaverse-challenge-one.vercel.app",
     },
+    
   ];
 
   return (
