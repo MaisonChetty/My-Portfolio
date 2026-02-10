@@ -3,47 +3,51 @@ import React from "react";
 
 import { motion } from "framer-motion";
 import { slideInFromTop } from "@/utils/motion";
-import Image from "next/image";
 import ContactForm from "./ContactForm";
+import { portfolioData } from "@/data/portfolio";
 
 const Encryption = () => {
+  const { contactSection } = portfolioData;
+
   return (
-    <div className="flex flex-row relative items-center justify-center min-h-screen w-full h-full"
-    id="contact-me">
-      <div className="absolute w-auto h-auto top-0 lg:top-20 z-[5]">
-        <motion.div
-          variants={slideInFromTop}
-          className="text-[40px] font-medium text-center text-gray-200"
-        >
-          Contact
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-            {" "}
-            ME{" "}
-          </span>
-        </motion.div>
-      </div>
-
-      <div className="flex flex-col items-center justify-center translate-y-[-50px] absolute z-[20] w-auto h-auto">
-        <ContactForm/>
-      </div>
-      <div className="absolute z-[20] bottom-[10px] px-[5px]">
-        <div className="cursive text-[20px] font-medium text-center text-gray-300">
-          Secure your data with end-to-end encryption
-        </div>
-      </div>
-
-      <div className="w-full flex items-start justify-center absolute">
+    <section
+      id="contact-me"
+      className="relative isolate z-10 flex min-h-[calc(100svh_-_var(--nav-height))] w-full items-center justify-center overflow-hidden py-16 sm:py-20 lg:py-24"
+    >
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-30">
         <video
           loop
           muted
           autoPlay
           playsInline
-          preload="false"
-          className="w-full h-auto"
-          src="/encryption.webm/"
+          preload="none"
+          className="h-full w-full object-cover"
+          src={contactSection.backgroundVideo}
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030014]/50 via-[#030014]/80 to-[#030014]" />
       </div>
-    </div>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 sm:px-6 md:px-10 lg:px-14">
+        <motion.div
+          variants={slideInFromTop}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          className="text-center text-3xl font-medium text-gray-200 sm:text-4xl lg:text-5xl 2xl:text-6xl"
+        >
+          {contactSection.title}{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+            {contactSection.highlight}
+          </span>
+        </motion.div>
+
+        <ContactForm />
+
+        <div className="cursive mt-10 text-center text-base font-medium text-gray-300 sm:text-lg lg:text-xl">
+          {contactSection.tagline}
+        </div>
+      </div>
+    </section>
   );
 };
 

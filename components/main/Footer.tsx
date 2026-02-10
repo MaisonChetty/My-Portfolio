@@ -1,7 +1,10 @@
 import React from "react";
 import { RxGithubLogo, RxLinkedinLogo } from "react-icons/rx";
+import { portfolioData } from "@/data/portfolio";
 
 const Footer = () => {
+  const { contact } = portfolioData;
+
   return (
     <footer
       className="w-full relative z-[50] bg-transparent text-gray-200 shadow-lg p-[15px] select-text pointer-events-auto"
@@ -13,7 +16,7 @@ const Footer = () => {
           <div className="min-w-[200px] flex flex-col items-center">
             <div className="font-bold text-[16px]">Community</div>
             <a
-              href="https://github.com/MaisonChetty"
+              href={contact.links.github}
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-row items-center my-[15px] cursor-pointer hover:text-gray-400"
@@ -27,7 +30,7 @@ const Footer = () => {
           <div className="min-w-[200px] flex flex-col items-center">
             <div className="font-bold text-[16px]">Social Media</div>
             <a
-              href="https://www.linkedin.com/in/maison-chetty-136b73263/"
+              href={contact.links.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-row items-center my-[15px] cursor-pointer hover:text-gray-400"
@@ -42,21 +45,21 @@ const Footer = () => {
             <div className="font-bold text-[16px]">About</div>
             <p className="flex flex-row items-center my-[10px]">
               <span className="text-[15px] ml-[6px] select-text">
-                maisonchetty4@gmail.com
+                {contact.email}
               </span>
             </p>
             <p className="flex flex-row items-center my-[5px]">
-              <span className="text-[15px] ml-[6px]">South Africa</span>
+              <span className="text-[15px] ml-[6px]">{contact.location.country}</span>
             </p>
             <p className="flex flex-row items-center my-[5px]">
-              <span className="text-[15px] ml-[6px]">Gauteng</span>
+              <span className="text-[15px] ml-[6px]">{contact.location.region}</span>
             </p>
             <p className="flex flex-row items-center my-[5px]">
-              <span className="text-[15px] ml-[6px]">Johannesburg</span>
+              <span className="text-[15px] ml-[6px]">{contact.location.city}</span>
             </p>
             <p className="flex flex-row items-center my-[10px]">
               <span className="text-[15px] ml-[6px] select-text">
-                +27 76 235 6734
+                {contact.phone}
               </span>
             </p>
           </div>

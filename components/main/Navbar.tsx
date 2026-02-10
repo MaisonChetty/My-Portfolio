@@ -1,36 +1,104 @@
-import { Socials } from "@/constants";
 import Image from "next/image";
 import React from "react";
+import { portfolioData } from "@/data/portfolio";
 
 const Navbar = () => {
+  const { nav, socials, hero } = portfolioData;
+
   return (
-    <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50 px-10">
-      <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
-        <a href="#about-me" className="h-auto w-auto flex flex-row items-center">
-          <span className="font-bold ml-[10px] hidden md:block text-gray-300">
-            Maison Chetty
-          </span>
+    <header className="fixed left-0 right-0 top-0 z-50 h-[var(--nav-height)] bg-[#03001417] px-6 shadow-lg shadow-[#2A0E61]/50 backdrop-blur-md md:px-12 lg:px-16">
+      <div className="mx-auto flex h-full max-w-[1600px] items-center justify-between">
+        <a
+          href="#about-me"
+          className="flex items-center text-base font-bold tracking-wide text-gray-300 md:text-lg"
+          aria-label="Go to About section"
+        >
+          {hero.name}
         </a>
 
-        <div className="w-[500px] h-full flex flex-row items-center justify-between md:mr-20">
-          <div className="flex items-center justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
-            <a href="#about-me" className="cursor-pointer pr-3 md:pr-0">AboutMe</a>
-            <a href="#skills" className="cursor-pointer pr-3 md:pr-0">Skills</a>
-            <a href="#projects" className="cursor-pointer pr-3 md:pr-0">Projects</a>
-            <a href="#contact-me" className="cursor-pointer pr-3 md:pr-0">Contact</a>
+        <nav className="hidden items-center md:flex" aria-label="Primary">
+          <div className="flex items-center gap-8 rounded-full border border-[#7042f861] bg-[#0300145e] px-7 py-2.5 text-base text-gray-200">
+            {nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="transition-colors hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
-        </div>
+        </nav>
 
-        {/* Social Icons with Links */}
-        <div className="flex flex-row gap-5">
-          {Socials.map((social) => (
-            <a key={social.name} href={social.link} target="_blank" rel="noopener noreferrer">
-              <Image src={social.src} alt={social.name} width={24} height={24} />
-            </a>
-          ))}
+        <div className="flex items-center gap-3">
+          <div className="hidden items-center gap-4 sm:flex" aria-label="Social links">
+            {socials.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.name}
+                className="opacity-90 transition-opacity hover:opacity-100"
+              >
+                <Image src={social.icon} alt={social.name} width={22} height={22} />
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile menu (no JS) */}
+          <details className="relative sm:hidden">
+            <summary className="cursor-pointer list-none rounded-md border border-white/10 bg-white/5 px-3 py-2 text-gray-200 hover:bg-white/10 [&::-webkit-details-marker]:hidden">
+              <span className="sr-only">Open menu</span>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 7H20M4 12H20M4 17H20"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </summary>
+
+            <div className="absolute right-0 mt-3 w-56 overflow-hidden rounded-xl border border-white/10 bg-[#030014e6] shadow-xl backdrop-blur-md">
+              <div className="flex flex-col p-2 text-sm text-gray-200">
+                {nav.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-lg px-3 py-2 transition-colors hover:bg-white/10 hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-between border-t border-white/10 p-2">
+                {socials.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className="rounded-lg p-2 opacity-90 transition-opacity hover:bg-white/10 hover:opacity-100"
+                  >
+                    <Image src={social.icon} alt={social.name} width={20} height={20} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </details>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

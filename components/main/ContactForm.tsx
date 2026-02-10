@@ -48,7 +48,7 @@ function ContactForm() {
 
   return (
     <motion.div
-      className="max-w-2xl mx-auto p-6 bg-transparent shadow-lg rounded-lg mt-8 z-1"
+      className="mx-auto mt-10 w-full max-w-3xl rounded-2xl bg-transparent p-6 shadow-lg z-[1] sm:p-7"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -59,7 +59,7 @@ function ContactForm() {
             type="text"
             name="name"
             placeholder="First Name"
-            className="flex-1 w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+            className="flex-1 w-full rounded-xl px-5 py-3 text-base shadow-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500 sm:text-lg"
             required
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -69,7 +69,7 @@ function ContactForm() {
             type="email"
             name="email"
             placeholder="E-mail"
-            className="flex-1 w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+            className="flex-1 w-full rounded-xl px-5 py-3 text-base shadow-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500 sm:text-lg"
             required
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -80,7 +80,7 @@ function ContactForm() {
         <motion.textarea
           name="message"
           placeholder="Message"
-          className="w-full text-lg px-4 py-2 rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 transition-all min-h-32 my-3"
+          className="my-3 min-h-40 w-full rounded-xl px-5 py-3 text-base shadow-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500 sm:text-lg"
           required
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -91,7 +91,7 @@ function ContactForm() {
           <motion.button
             type="submit"
             disabled={loading}
-            className={`bg-indigo-600 text-white hover:bg-indigo-700 py-2 px-4 rounded-lg shadow-md uppercase tracking-wider transition-all ease-linear ${
+            className={`rounded-xl bg-indigo-600 px-6 py-3 text-base font-semibold uppercase tracking-wider text-white shadow-md transition-all ease-linear hover:bg-indigo-700 sm:text-lg ${
               loading ? "opacity-70 cursor-not-allowed" : ""
             }`}
             whileHover={{ scale: 1.05 }}

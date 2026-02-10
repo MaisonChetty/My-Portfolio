@@ -3,25 +3,31 @@ import React from 'react'
 import {motion} from 'framer-motion'
 import { slideInFromLeft, slideInFromRight} from '@/utils/motion'
 
-const SkillText = () => {
-  return (
-    <div className='w-full h-auto flex flex-col items-center justify-center pt-6 z-[50]'>
+type Props = {
+  title: string
+  subtitle: string
+  tagline: string
+}
 
-      <h1 className="text-[40px] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 py-10">
-        My Skills
-      </h1>
+const SkillText = ({ title, subtitle, tagline }: Props) => {
+  return (
+    <div className='w-full h-auto flex flex-col items-center justify-center z-[50]'>
+
+      <h2 className="pb-8 text-center text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 sm:pb-10 sm:text-4xl lg:text-5xl 2xl:text-6xl">
+        {title}
+      </h2>
 
         <motion.div
         variants={slideInFromLeft(0.5)}
-        className='text-[30px] text-white font-medium mt-[10px] text-center mb-[15px]'
+        className='mb-[15px] mt-[10px] text-center text-2xl font-medium text-white sm:text-3xl lg:text-4xl'
         >
-            Making apps with modern technologies
+            {subtitle}
         </motion.div>
         <motion.div
         variants={slideInFromRight(0.5)}
-        className='cursive text-[20px] text-gray-200 mb-10 mt-[10px] text-center'
+        className='cursive mb-10 mt-[10px] text-center text-base text-gray-200 sm:text-lg lg:text-xl'
         >
-            Never miss a task, deadline or idea
+            {tagline}
         </motion.div>
     </div>
   )

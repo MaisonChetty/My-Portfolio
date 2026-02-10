@@ -1,68 +1,53 @@
-import {
-  Backend_skill,
-  Frontend_skill,
-  Full_stack,
-  Other_skill,
-  Skill_data,
-} from "@/constants";
 import React from "react";
 import SkillDataProvider from "../sub/SkillDataProvider";
 import SkillText from "../sub/SkillText";
+import { portfolioData } from "@/data/portfolio";
 
 const Skills = () => {
+  const { skillsSection, skills } = portfolioData;
+  const allSkills = [
+    ...skills.core,
+    ...skills.backend,
+    ...skills.fullStack,
+    ...skills.other,
+  ];
+
   return (
     <section
       id="skills"
-      className="flex flex-col items-center justify-center pt-20 gap-3 h-full relative overflow-hidden pb-80 py-20"
-      style={{ transform: "scale(0.9" }}
+      className="relative isolate z-10 flex min-h-[calc(100svh_-_var(--nav-height))] w-full flex-col items-center justify-center gap-6 overflow-hidden py-16 sm:py-20 lg:py-24"
     >
-      <SkillText />
-
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {Skill_data.map((image, index) => (
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-        ))}
-      </div>
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {Backend_skill.map((image, index) => (
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-        ))}
-      </div>
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {Full_stack.map((image, index) => (
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-        ))}
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-25">
+        <video
+          className="h-full w-full object-cover"
+          preload="none"
+          playsInline
+          loop
+          muted
+          autoPlay
+          src={skillsSection.backgroundVideo}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030014]/40 via-[#030014]/70 to-[#030014]" />
       </div>
 
-      <div className="w-full h-full absolute">
-        <div className="w-full h-full z-[-10] opacity-30 absolute flex items-center justify-center bg-cover">
-          <video
-            className="w-full h-auto"
-            preload="false"
-            playsInline
-            loop
-            muted
-            autoPlay
-            src="/cards-video.webm"
-          />
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 sm:px-6 md:px-10 lg:px-14">
+        <SkillText
+          title={skillsSection.title}
+          subtitle={skillsSection.subtitle}
+          tagline={skillsSection.tagline}
+        />
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-7 sm:gap-8">
+          {allSkills.map((skill, index) => (
+            <SkillDataProvider
+              key={skill.name}
+              src={skill.icon}
+              width={skill.width}
+              height={skill.height}
+              alt={skill.name}
+              index={index}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -9,10 +9,11 @@ interface Props {
     src: string;
     width: number;
     height: number;
+    alt: string;
     index: number;
 }
 
-const SkillDataProvider = ({ src, width, height, index} : Props) => {
+const SkillDataProvider = ({ src, width, height, alt, index} : Props) => {
     const {ref, inView} = useInView({
         triggerOnce: true
     })
@@ -36,7 +37,8 @@ const SkillDataProvider = ({ src, width, height, index} : Props) => {
 src={src}
 width={width}
 height={height}
-alt='skill image'
+alt={alt}
+className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-20 lg:w-20 2xl:h-24 2xl:w-24"
     />
   </motion.div>
   )

@@ -1,0 +1,143 @@
+{
+  "nav": [
+    { "label": "About", "href": "#about-me" },
+    { "label": "Skills", "href": "#skills" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Contact", "href": "#contact-me" }
+  ],
+  "hero": {
+    "name": "Maison Chetty",
+    "intro": "My Name Is",
+    "description": "I’m a Software Engineer with a BSc in Information Technology, currently completing my Honours degree.\nI build full-stack web applications using React, Next.js and relational databases, focusing on clean and scalable architecture.\nI’ve worked on modernizing legacy systems, improving performance, and automating business processes.\nI’m comfortable collaborating with both technical and non-technical stakeholders in Agile environments.\nMy interests include cloud computing, cybersecurity and system design.\nI aim to grow into an engineer who designs reliable systems that create real-world impact.",
+    "profileImage": "/profile1.jpg",
+    "heroImage": "/mainIconsdark.svg",
+    "backgroundVideo": "/blackhole.webm"
+  },
+  "socials": [
+    {
+      "name": "Instagram",
+      "icon": "/instagram.svg",
+      "url": "https://www.instagram.com/maisontchetty/"
+    },
+    {
+      "name": "GitHub",
+      "icon": "/github-mark-white.svg",
+      "url": "https://github.com/MaisonChetty"
+    },
+    {
+      "name": "LinkedIn",
+      "icon": "/icons8-linkedin-250.svg",
+      "url": "https://www.linkedin.com/in/maison-chetty-136b73263/"
+    }
+  ],
+  "skillsSection": {
+    "title": "My Skills",
+    "subtitle": "Making apps with modern technologies",
+    "tagline": "Never miss a task, deadline or idea",
+    "backgroundVideo": "/cards-video.webm"
+  },
+  "skills": {
+    "core": [
+      { "name": "HTML5", "icon": "/html.png", "width": 80, "height": 80 },
+      { "name": "CSS", "icon": "/css.png", "width": 80, "height": 80 },
+      { "name": "JavaScript", "icon": "/js.png", "width": 65, "height": 65 },
+      {
+        "name": "Tailwind CSS",
+        "icon": "/tailwind.png",
+        "width": 80,
+        "height": 80
+      },
+      { "name": "React", "icon": "/react.png", "width": 80, "height": 80 },
+      {
+        "name": "React Query",
+        "icon": "/reactquery.png",
+        "width": 80,
+        "height": 80
+      },
+      { "name": "TypeScript", "icon": "/ts.png", "width": 80, "height": 80 },
+      { "name": "Next.js", "icon": "/next.png", "width": 80, "height": 80 },
+      {
+        "name": "Framer Motion",
+        "icon": "/framer.png",
+        "width": 80,
+        "height": 80
+      },
+      { "name": "Stripe", "icon": "/stripe.webp", "width": 80, "height": 80 }
+    ],
+    "backend": [
+      { "name": "Node.js", "icon": "/node-js.png", "width": 80, "height": 80 },
+      { "name": "MongoDB", "icon": "/mongodb.png", "width": 40, "height": 40 },
+      {
+        "name": "Firebase",
+        "icon": "/Firebase.png",
+        "width": 55,
+        "height": 55
+      },
+      {
+        "name": "PostgreSQL",
+        "icon": "/postger.png",
+        "width": 70,
+        "height": 70
+      },
+      { "name": "MySQL", "icon": "/mysql.png", "width": 70, "height": 70 },
+      { "name": "GraphQL", "icon": "/graphql.png", "width": 80, "height": 80 }
+    ],
+    "fullStack": [
+      {
+        "name": "React Native",
+        "icon": "/react-native.png",
+        "width": 70,
+        "height": 70
+      }
+    ],
+    "other": []
+  },
+  "projectsSection": {
+    "title": "My Projects"
+  },
+  "projects": [
+    {
+      "image": "/saas.PNG",
+      "title": "PDF AI Conversationalist",
+      "description": "Turn any PDF into your personal study companion! 🚀 Upload your PDFs, ask questions 🤔, generate study guides 📝, or create quizzes 🎯 — all powered by AI. Perfect for students, researchers, or anyone who wants to learn faster and smarter.",
+      "url": "https://saas-eta-three.vercel.app/"
+    },
+    {
+      "image": "/AI.PNG",
+      "title": "AI YouTube Transcriptor",
+      "description": "🎬 AI Video Agent – Your personal AI sidekick for video creation! 🚀 Analyze engagement 📊, get smart transcripts ✍️, generate eye-catching thumbnails 🖼️, craft attention-grabbing titles 📝. Chat with your AI agent 🤖 to brainstorm and level up your content game! 🌟",
+      "url": "https://ai-agent-gamma-beryl.vercel.app"
+    },
+    {
+      "image": "/hydro-fuel.png",
+      "title": "Hydro Fuel",
+      "description": "A website where water is used to help lower the cost of fuel in cars.",
+      "url": "https://hydrofuel.vercel.app"
+    },
+    {
+      "image": "/metaverse-challenge.png",
+      "title": "Metaverse Challenge",
+      "description": "One of my first websites created while learning from Sonny Sangha.",
+      "url": "https://metaverse-challenge-one.vercel.app"
+    }
+  ],
+  "contactSection": {
+    "title": "Contact",
+    "highlight": "ME",
+    "tagline": "Secure your data with end-to-end encryption",
+    "backgroundVideo": "/encryption.webm"
+  },
+  "contact": {
+    "email": "maisonchetty4@gmail.com",
+    "phone": "+27 76 235 6734",
+    "location": {
+      "country": "South Africa",
+      "region": "Gauteng",
+      "city": "Johannesburg"
+    },
+    "links": {
+      "github": "https://github.com/MaisonChetty",
+      "linkedin": "https://www.linkedin.com/in/maison-chetty-136b73263/"
+    }
+  }
+}

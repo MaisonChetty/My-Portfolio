@@ -7,65 +7,67 @@ import {
   slideInFromRight,
   slideInFromTop,
 } from "@/utils/motion";
-import { SparklesIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { portfolioData } from "@/data/portfolio";
 
 const HeroContent = () => {
+  const { hero } = portfolioData;
+
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-center px-20 mt-40 w-full z-[20]"
+      className="relative z-[20] mx-auto flex w-full max-w-[1600px] flex-col items-center justify-center gap-10 px-5 py-14 sm:px-6 sm:py-16 md:px-10 lg:flex-row lg:justify-between lg:gap-14 lg:px-14 lg:py-20"
     >
-      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
+      <div className="flex w-full flex-col items-center justify-center gap-6 text-center lg:basis-[45%] lg:items-start lg:text-start">
         <motion.div
           variants={slideInFromTop}
-          className="Welcome-box p-1 border border-[#7042f88b] opacity-[0.9]"
+          className="Welcome-box border border-[#7042f88b] opacity-[0.9]"
         >
-          <Image 
-            src="/profilepic.jpeg" 
-            alt="Welcome Image" 
-            width={300} 
-            height={300} 
-            className="rounded-full w-[70px] h-[70px] lg:w-[300px] lg:h-[300px] md:w-[150px] md:h-[150px]"
-          />
+          <div className="relative h-20 w-20 sm:h-24 sm:w-24 md:h-36 md:w-36 lg:h-56 lg:w-56">
+            <Image
+              src={hero.profileImage}
+              alt={`${hero.name} profile photo`}
+              fill
+              priority
+              sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 144px, 224px"
+              className="rounded-full object-cover"
+            />
+          </div>
         </motion.div>
 
         <motion.div
           variants={slideInFromLeft(0.5)}
-          className="flex flex-col gap-6 mt-6 text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
+          className="mt-6 flex max-w-3xl flex-col gap-6 text-4xl font-bold leading-[1.06] text-white sm:text-5xl lg:text-6xl 2xl:text-7xl"
         >
-          <span>
-            My Name Is 
+          <h1>
+            {hero.intro}{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-              {" "}Maison Chetty{" "}
+              {hero.name}
             </span>
-          </span>
+          </h1>
         </motion.div>
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg text-gray-400 my-5 max-w-[600px]"
+          className="my-5 max-w-3xl whitespace-pre-line text-base leading-relaxed text-gray-300/85 sm:text-lg lg:text-xl"
         >
-          I&apos;m a Full Stack Software Engineer with experience in Website, Mobile, and Software development. 
-          I&apos;m also currently studying and a huge animal lover! I enjoy spending time with family or gaming. 
-          While I&apos;m not a club person, I love braais, restaurants with friends, or friendly basketball games. 
-          When a creative spark hits, I grab my drawing tools and experiment with all kinds of art, both 2D and 3D. 
-          I&apos;m a black belt in karate—one of my proudest achievements! I also have a deep wanderlust, and traveling 
-          the world fuels my dream to explore more.
+          {hero.description}
         </motion.p>
       </div>
 
-
       <motion.div
         variants={slideInFromRight(0.8)}
-        className="w-full h-full flex justify-center items-center"
+        className="flex w-full justify-center lg:basis-[55%] lg:justify-end"
       >
         <Image
-          src="/mainIconsdark.svg"
-          alt="work icons"
+          src={hero.heroImage}
+          alt="Technology icons"
           height={650}
           width={650}
+          priority
+          sizes="(max-width: 1024px) 92vw, 55vw"
+          className="h-auto w-full max-w-[560px] sm:max-w-[640px] lg:max-w-[720px] 2xl:max-w-[820px]"
         />
       </motion.div>
     </motion.div>

@@ -1,37 +1,51 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
 
 interface Props {
-  src: string;
+  image: string;
   title: string;
   description: string;
-  link: string;
+  url: string;
 }
 
-const ProjectCard = ({ src, title, description, link }: Props) => {
+const ProjectCard = ({ image, title, description, url }: Props) => {
   return (
-    <Link href={link} passHref>
-      <div className="relative overflow-hidden rounded-lg shadow-lg border border-[#2A0E61] cursor-pointer transition-transform transform hover:scale-105 w-full">
-        {/* Fixed height container to prevent carousel jump */}
-        <div className="w-full h-[400px] relative">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block h-full focus:outline-none"
+      aria-label={`Open project: ${title}`}
+    >
+      <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/6 to-white/[0.03] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition-transform duration-300 will-change-transform group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-cyan-400/70">
+        <div className="relative aspect-[16/9] w-full overflow-hidden">
           <Image
-            src={src}
+            src={image}
             alt={title}
             fill
-            className="object-contain"
-            sizes="(max-width: 768px) 100vw, 600px"
-            priority
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+            sizes="(max-width: 768px) 92vw, (max-width: 1280px) 85vw, 1152px"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030014]/80 via-transparent to-transparent" />
         </div>
 
-        {/* Card content */}
-        <div className="relative p-4 bg-[#1a0b3d]/70">
-          <h1 className="text-2xl font-semibold text-white">{title}</h1>
-          <p className="mt-2 text-gray-300">{description}</p>
+        <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6 lg:p-8">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="text-xl font-semibold text-white sm:text-2xl lg:text-3xl">
+              {title}
+            </h3>
+            <span className="mt-1 inline-flex rounded-full border border-white/10 bg-white/5 p-2 text-gray-200 opacity-70 transition-opacity group-hover:opacity-100">
+              <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+            </span>
+          </div>
+
+          <p className="line-clamp-4 text-sm leading-relaxed text-gray-200/80 sm:text-base lg:text-lg">
+            {description}
+          </p>
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 

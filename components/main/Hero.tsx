@@ -1,19 +1,28 @@
 import React from "react";
 import HeroContent from "../sub/HeroContent";
+import { portfolioData } from "@/data/portfolio";
 
 const Hero = () => {
+  const { hero } = portfolioData;
+
   return (
-    <div className="relative flex flex-col h-full w-full" id="about-me">
+    <section
+      className="relative isolate z-10 flex min-h-[calc(100svh_-_var(--nav-height))] w-full items-center overflow-hidden"
+      id="about-me"
+    >
       <video
         autoPlay
         muted
         loop
-        className="rotate-180 absolute top-[-590px] lg:top-[-390px] md:top-[-430px]  h-full w-full left-0 z-[1] object-cover "
+        playsInline
+        preload="none"
+        className="absolute inset-0 z-0 h-full w-full object-cover rotate-180 scale-[1.6] opacity-70 md:scale-[1.35] lg:scale-[1.2]"
       >
-        <source src="/blackhole.webm" type="video/webm" />
+        <source src={hero.backgroundVideo} type="video/webm" />
       </video>
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#030014]/20 via-[#030014]/60 to-[#030014]" />
       <HeroContent />
-    </div>
+    </section>
   );
 };
 
