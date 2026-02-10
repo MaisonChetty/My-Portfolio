@@ -23,14 +23,14 @@ const Projects = () => {
       src: encodeURI("/saas.PNG"),
       title: "Pdf AI conversationalist",
       description:
-        "This was my first ever AI web application and I am so proud of how it turned out #PAPFAM",
+        "Turn any PDF into your personal study companion! 🚀 Upload your PDFs, ask questions 🤔, generate study guides 📝, or create quizzes 🎯 — all powered by AI. Perfect for students, researchers, or anyone who wants to learn faster and smarter.",
       link: "https://saas-eta-three.vercel.app/",
     },
         {
       src: encodeURI("/AI.PNG"),
       title: "AI YouTube Transcriptor",
       description:
-        "This was one of the most interesting and thrilling AI webapplications I built",
+        "🎬 AI Video Agent – Your personal AI sidekick for video creation! 🚀 Analyze engagement 📊, get smart transcripts ✍️, generate eye-catching thumbnails 🖼️, craft attention-grabbing titles 📝. Chat with your AI agent 🤖 to brainstorm and level up your content game! 🌟",
       link: "https://ai-agent-gamma-beryl.vercel.app",
     },
     {
