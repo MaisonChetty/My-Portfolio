@@ -5,63 +5,52 @@ import { portfolioData } from "@/data/portfolio";
 const Footer = () => {
   const { contact } = portfolioData;
 
-  return (
-    <footer
-      className="w-full relative z-[50] bg-transparent text-gray-200 shadow-lg p-[15px] select-text pointer-events-auto"
-    >
-      <div className="w-full flex flex-col items-center justify-center m-auto">
-        <div className="w-full flex flex-row items-center justify-around flex-wrap">
-          
-          {/* Community Section */}
-          <div className="min-w-[200px] flex flex-col items-center">
-            <div className="font-bold text-[16px]">Community</div>
+    return (
+    <footer className="pointer-events-auto relative z-[50] w-full border-t border-white/5 bg-transparent text-gray-200">
+      <div className="mx-auto w-full max-w-[var(--container-max-w)] px-[var(--container-pad-x)] py-10">
+        <div className="grid gap-10 text-center sm:grid-cols-2 sm:text-left lg:grid-cols-3">
+          <div className="flex flex-col items-center gap-4 sm:items-start">
+            <div className="text-[clamp(1rem,1.1vw,1.125rem)] font-semibold">
+              Community
+            </div>
             <a
               href={contact.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-row items-center my-[15px] cursor-pointer hover:text-gray-400"
+              className="inline-flex items-center gap-2 text-[clamp(0.95rem,1vw,1.05rem)] text-gray-300 transition-colors hover:text-white"
             >
-              <RxGithubLogo />
-              <span className="text-[15px] ml-[6px]">GitHub</span>
+              <RxGithubLogo className="h-5 w-5" aria-hidden="true" />
+              <span>GitHub</span>
             </a>
           </div>
 
-          {/* Social Media Section */}
-          <div className="min-w-[200px] flex flex-col items-center">
-            <div className="font-bold text-[16px]">Social Media</div>
+          <div className="flex flex-col items-center gap-4 sm:items-start">
+            <div className="text-[clamp(1rem,1.1vw,1.125rem)] font-semibold">
+              Social Media
+            </div>
             <a
               href={contact.links.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-row items-center my-[15px] cursor-pointer hover:text-gray-400"
+              className="inline-flex items-center gap-2 text-[clamp(0.95rem,1vw,1.05rem)] text-gray-300 transition-colors hover:text-white"
             >
-              <RxLinkedinLogo />
-              <span className="text-[15px] ml-[6px]">LinkedIn</span>
+              <RxLinkedinLogo className="h-5 w-5" aria-hidden="true" />
+              <span>LinkedIn</span>
             </a>
           </div>
 
-          {/* About Section */}
-          <div className="min-w-[200px] flex flex-col items-center">
-            <div className="font-bold text-[16px]">About</div>
-            <p className="flex flex-row items-center my-[10px]">
-              <span className="text-[15px] ml-[6px] select-text">
-                {contact.email}
-              </span>
-            </p>
-            <p className="flex flex-row items-center my-[5px]">
-              <span className="text-[15px] ml-[6px]">{contact.location.country}</span>
-            </p>
-            <p className="flex flex-row items-center my-[5px]">
-              <span className="text-[15px] ml-[6px]">{contact.location.region}</span>
-            </p>
-            <p className="flex flex-row items-center my-[5px]">
-              <span className="text-[15px] ml-[6px]">{contact.location.city}</span>
-            </p>
-            <p className="flex flex-row items-center my-[10px]">
-              <span className="text-[15px] ml-[6px] select-text">
-                {contact.phone}
-              </span>
-            </p>
+          <div className="flex flex-col items-center gap-4 sm:items-start">
+            <div className="text-[clamp(1rem,1.1vw,1.125rem)] font-semibold">
+              About
+            </div>
+            <ul className="space-y-2 text-[clamp(0.95rem,1vw,1.05rem)] text-gray-300">
+              <li className="break-words select-text">{contact.email}</li>
+              <li>
+                {contact.location.city}, {contact.location.region},{" "}
+                {contact.location.country}
+              </li>
+              <li className="break-words select-text">{contact.phone}</li>
+            </ul>
           </div>
         </div>
       </div>

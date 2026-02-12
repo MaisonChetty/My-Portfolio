@@ -9,10 +9,10 @@ import { portfolioData } from "@/data/portfolio";
 const Encryption = () => {
   const { contactSection } = portfolioData;
 
-  return (
+    return (
     <section
       id="contact-me"
-      className="relative isolate z-10 flex min-h-[calc(100svh_-_var(--nav-height))] w-full items-center justify-center overflow-hidden py-16 sm:py-20 lg:py-24"
+      className="relative isolate z-10 flex min-h-[calc(100svh_-_var(--nav-height))] w-full items-center justify-center overflow-hidden py-[var(--section-pad-y)]"
     >
       <div className="pointer-events-none absolute inset-0 z-0 opacity-30">
         <video
@@ -27,13 +27,13 @@ const Encryption = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#030014]/50 via-[#030014]/80 to-[#030014]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 sm:px-6 md:px-10 lg:px-14">
+      <div className="relative z-10 mx-auto flex w-full max-w-[var(--container-max-w)] flex-col items-center px-[var(--container-pad-x)]">
         <motion.div
           variants={slideInFromTop}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
-          className="text-center text-3xl font-medium text-gray-200 sm:text-4xl lg:text-5xl 2xl:text-6xl"
+          className="mx-auto max-w-4xl text-center text-[clamp(1.875rem,3.2vw,3.75rem)] font-medium text-gray-200"
         >
           {contactSection.title}{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
@@ -43,7 +43,7 @@ const Encryption = () => {
 
         <ContactForm />
 
-        <div className="cursive mt-10 text-center text-base font-medium text-gray-300 sm:text-lg lg:text-xl">
+        <div className="cursive mx-auto mt-10 max-w-3xl text-center text-[clamp(1rem,1.4vw,1.25rem)] font-medium text-gray-300">
           {contactSection.tagline}
         </div>
       </div>

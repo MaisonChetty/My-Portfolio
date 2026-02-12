@@ -28,7 +28,7 @@ function ContactForm() {
 
       const data = await response.json();
 
-      // ✅ Treat all valid responses as success
+      // Treat all valid responses as success.
       const message = data.message?.toLowerCase() || "";
       if (
         data.success === true ||
@@ -48,18 +48,18 @@ function ContactForm() {
 
   return (
     <motion.div
-      className="mx-auto mt-10 w-full max-w-3xl rounded-2xl bg-transparent p-6 shadow-lg z-[1] sm:p-7"
+      className="z-[1] mx-auto mt-10 w-full max-w-3xl rounded-2xl bg-transparent p-[clamp(1.5rem,2vw,2rem)] shadow-lg"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
       <form className="mt-5" onSubmit={onSubmit}>
-        <div className="flex flex-col sm:flex-row gap-6 my-3">
+        <div className="my-3 flex flex-col gap-6 sm:flex-row">
           <motion.input
             type="text"
             name="name"
             placeholder="First Name"
-            className="flex-1 w-full rounded-xl px-5 py-3 text-base shadow-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500 sm:text-lg"
+            className="w-full flex-1 rounded-xl px-5 py-3 text-[clamp(1rem,1.1vw,1.125rem)] shadow-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500"
             required
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -69,7 +69,7 @@ function ContactForm() {
             type="email"
             name="email"
             placeholder="E-mail"
-            className="flex-1 w-full rounded-xl px-5 py-3 text-base shadow-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500 sm:text-lg"
+            className="w-full flex-1 rounded-xl px-5 py-3 text-[clamp(1rem,1.1vw,1.125rem)] shadow-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500"
             required
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -80,19 +80,19 @@ function ContactForm() {
         <motion.textarea
           name="message"
           placeholder="Message"
-          className="my-3 min-h-40 w-full rounded-xl px-5 py-3 text-base shadow-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500 sm:text-lg"
+          className="my-3 min-h-40 w-full rounded-xl px-5 py-3 text-[clamp(1rem,1.1vw,1.125rem)] shadow-sm outline-none transition-all focus:ring-2 focus:ring-indigo-500"
           required
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         />
 
-        <div className="flex items-center justify-center mt-6">
+        <div className="mt-6 flex items-center justify-center">
           <motion.button
             type="submit"
             disabled={loading}
-            className={`rounded-xl bg-indigo-600 px-6 py-3 text-base font-semibold uppercase tracking-wider text-white shadow-md transition-all ease-linear hover:bg-indigo-700 sm:text-lg ${
-              loading ? "opacity-70 cursor-not-allowed" : ""
+            className={`rounded-xl bg-indigo-600 px-6 py-3 text-[clamp(1rem,1.1vw,1.125rem)] font-semibold uppercase tracking-wider text-white shadow-md transition-all ease-linear hover:bg-indigo-700 ${
+              loading ? "cursor-not-allowed opacity-70" : ""
             }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -103,12 +103,12 @@ function ContactForm() {
 
         {sent && (
           <motion.p
-            className="text-green-400 text-center mt-4"
+            className="mt-4 text-center text-green-400"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            ✅ Your email has been sent successfully!
+            Message sent successfully.
           </motion.p>
         )}
       </form>

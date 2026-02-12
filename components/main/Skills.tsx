@@ -12,10 +12,10 @@ const Skills = () => {
     ...skills.other,
   ];
 
-  return (
+    return (
     <section
       id="skills"
-      className="relative isolate z-10 flex min-h-[calc(100svh_-_var(--nav-height))] w-full flex-col items-center justify-center gap-6 overflow-hidden py-16 sm:py-20 lg:py-24"
+      className="relative isolate z-10 flex min-h-[calc(100svh_-_var(--nav-height))] w-full flex-col items-center justify-center gap-6 overflow-hidden py-[var(--section-pad-y)]"
     >
       <div className="pointer-events-none absolute inset-0 z-0 opacity-25">
         <video
@@ -30,14 +30,14 @@ const Skills = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#030014]/40 via-[#030014]/70 to-[#030014]" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 sm:px-6 md:px-10 lg:px-14">
+      <div className="relative z-10 mx-auto w-full max-w-[var(--container-max-w)] px-[var(--container-pad-x)]">
         <SkillText
           title={skillsSection.title}
           subtitle={skillsSection.subtitle}
           tagline={skillsSection.tagline}
         />
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-7 sm:gap-8">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-[clamp(1.75rem,2vw,2rem)]">
           {allSkills.map((skill, index) => (
             <SkillDataProvider
               key={skill.name}

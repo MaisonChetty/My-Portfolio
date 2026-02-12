@@ -111,7 +111,31 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --nav-height: 65px;
+    --nav-height: 56px;
+
+    /* Fluid spacing + component sizing scale (reduces the need for many breakpoint classes) */
+    --container-max-w: 1600px;
+    --container-pad-x: clamp(1rem, 3vw, 3.5rem);
+    --section-pad-y: clamp(2.5rem, 6svh, 5rem);
+    --hero-pad-y: clamp(2.5rem, 7svh, 5rem);
+
+    /* HERO sizing */
+    --hero-gap: clamp(2.25rem, 3.5vw, 3.25rem);
+    --hero-avatar-size: clamp(5rem, 9vw, 11.5rem);
+    --hero-title-size: clamp(2.2rem, 4.1vw, 3.85rem);
+    --hero-desc-size: clamp(0.95rem, 1.2vw, 1.125rem);
+    --hero-visual-h: clamp(16rem, 48svh, 35rem);
+    --hero-visual-max-w: clamp(20rem, 54vw, 52rem);
+
+    /* PROJECTS sizing */
+    --section-title-pad-b: clamp(2rem, 3vw, 2.5rem);
+    --carousel-pad-y: clamp(1rem, 2vw, 1.5rem);
+    --project-card-max-w: clamp(48rem, 70vw, 64rem);
+    --project-image-h: clamp(11rem, 32svh, 20rem);
+    --project-title-size: clamp(1.35rem, 1.5vw, 1.9rem);
+    --project-desc-size: clamp(0.95rem, 1.1vw, 1.15rem);
+    --carousel-arrow-size: clamp(2.75rem, 3vw, 3.25rem);
+    --carousel-arrow-offset: clamp(0.5rem, 2.5vw, 3.5rem);
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -148,5 +172,207 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@media (min-width: 640px) {
+  :root {
+    --nav-height: 64px;
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --nav-height: 72px;
+  }
+}
+
+@media (min-width: 1536px) and (max-height: 900px) {
+  :root {
+    --nav-height: 64px;
+  }
+}
+
+/* Shorter viewports: keep the design readable without overflowing. */
+@media (max-height: 918px) {
+  :root {
+    --section-pad-y: clamp(2rem, 5svh, 3.75rem);
+    --hero-pad-y: clamp(2rem, 5.5svh, 3.75rem);
+
+    --hero-gap: clamp(2rem, 3vw, 2.75rem);
+    --hero-avatar-size: clamp(4.5rem, 9vw, 9rem);
+    --hero-title-size: clamp(2rem, 3.6vw, 3.35rem);
+    --hero-desc-size: clamp(0.95rem, 1.1vw, 1.1rem);
+    --hero-visual-h: clamp(13rem, 44svh, 24rem);
+    --hero-visual-max-w: clamp(20rem, 55vw, 42rem);
+
+    --section-title-pad-b: clamp(1.75rem, 2.75vw, 2.25rem);
+    --project-card-max-w: clamp(44rem, 70vw, 58rem);
+    --project-image-h: clamp(9.5rem, 28svh, 14rem);
+    --carousel-arrow-size: clamp(2.6rem, 3vw, 3.1rem);
+    --carousel-arrow-offset: clamp(0.5rem, 2.25vw, 3rem);
+  }
+}
+
+@media (max-height: 800px) {
+  :root {
+    --section-pad-y: clamp(1.75rem, 4.5svh, 3.25rem);
+    --hero-pad-y: clamp(1.75rem, 5svh, 3.25rem);
+
+    --hero-gap: clamp(1.75rem, 2.75vw, 2.5rem);
+    --hero-avatar-size: clamp(4rem, 8vw, 8rem);
+    --hero-title-size: clamp(1.85rem, 3.2vw, 3rem);
+    --hero-desc-size: clamp(0.9rem, 1.05vw, 1rem);
+    --hero-visual-h: clamp(12rem, 40svh, 22rem);
+    --hero-visual-max-w: clamp(18rem, 50vw, 38rem);
+
+    --section-title-pad-b: clamp(1.5rem, 2.5vw, 2.25rem);
+    --project-card-max-w: clamp(40rem, 82vw, 54rem);
+    --project-image-h: clamp(9rem, 26svh, 13rem);
+    --carousel-arrow-size: clamp(2.5rem, 3vw, 3rem);
+    --carousel-arrow-offset: clamp(0.5rem, 2vw, 2.5rem);
+  }
+}
+
+@media (max-height: 720px) {
+  :root {
+    --section-pad-y: clamp(1.5rem, 4svh, 3rem);
+    --hero-pad-y: clamp(1.5rem, 4.5svh, 3rem);
+
+    --hero-gap: clamp(1.5rem, 2.5vw, 2.25rem);
+    --hero-avatar-size: clamp(3.75rem, 9vw, 7rem);
+    --hero-title-size: clamp(1.75rem, 3vw, 2.75rem);
+    --hero-desc-size: clamp(0.875rem, 1vw, 0.975rem);
+    --hero-visual-h: clamp(11rem, 38svh, 20rem);
+    --hero-visual-max-w: clamp(18rem, 52vw, 36rem);
+
+    --section-title-pad-b: clamp(1.25rem, 2.25vw, 2rem);
+    --project-card-max-w: clamp(36rem, 90vw, 52rem);
+    --project-image-h: clamp(8.5rem, 24svh, 12rem);
+    --carousel-arrow-size: clamp(2.25rem, 3vw, 2.75rem);
+    --carousel-arrow-offset: clamp(0.5rem, 2vw, 2.25rem);
+  }
+}
+
+@media (max-height: 664px) {
+  :root {
+    --section-pad-y: clamp(1.35rem, 3.8svh, 2.75rem);
+    --hero-pad-y: clamp(1.35rem, 4.2svh, 2.75rem);
+
+    --hero-gap: clamp(1.35rem, 2.3vw, 2.05rem);
+    --hero-avatar-size: clamp(3.5rem, 10vw, 6.25rem);
+    --hero-title-size: clamp(1.65rem, 3vw, 2.55rem);
+    --hero-desc-size: clamp(0.86rem, 1vw, 0.95rem);
+    --hero-visual-h: clamp(10.5rem, 35svh, 18rem);
+    --hero-visual-max-w: clamp(16rem, 50vw, 33rem);
+
+    --section-title-pad-b: clamp(1.1rem, 2vw, 1.8rem);
+    --project-card-max-w: clamp(32rem, 94vw, 48rem);
+    --project-image-h: clamp(7.75rem, 22svh, 11rem);
+    --carousel-arrow-size: clamp(2.1rem, 3vw, 2.5rem);
+    --carousel-arrow-offset: 0.5rem;
+  }
+}
+
+@media (max-height: 600px) {
+  :root {
+    --section-pad-y: clamp(1.25rem, 3.5svh, 2.5rem);
+    --hero-pad-y: clamp(1.25rem, 4svh, 2.5rem);
+
+    --hero-gap: clamp(1.25rem, 2.2vw, 2rem);
+    --hero-avatar-size: clamp(3.25rem, 10vw, 6rem);
+    --hero-title-size: clamp(1.6rem, 3vw, 2.5rem);
+    --hero-desc-size: clamp(0.85rem, 1vw, 0.95rem);
+    --hero-visual-h: clamp(10rem, 34svh, 17rem);
+    --hero-visual-max-w: clamp(16rem, 50vw, 32rem);
+
+    --section-title-pad-b: clamp(1rem, 2vw, 1.75rem);
+    --project-card-max-w: clamp(30rem, 96vw, 46rem);
+    --project-image-h: clamp(7.5rem, 22svh, 10.5rem);
+    --carousel-arrow-size: clamp(2.1rem, 3vw, 2.5rem);
+    --carousel-arrow-offset: 0.5rem;
+  }
+}
+
+/* Desktop width tiers: tune common monitor groups without a large pile of breakpoint classes. */
+@media (min-width: 1200px) and (max-width: 1500px) and (min-height: 850px) {
+  :root {
+    /* e.g. 1440x1080: slightly smaller than the default desktop scale */
+    --hero-gap: clamp(2rem, 3vw, 2.9rem);
+    --hero-title-size: clamp(2.15rem, 3.7vw, 3.55rem);
+    --hero-desc-size: clamp(0.95rem, 1.05vw, 1.1rem);
+    --hero-visual-h: clamp(15rem, 44svh, 30rem);
+    --hero-visual-max-w: clamp(20rem, 52vw, 46rem);
+
+    --project-card-max-w: clamp(46rem, 70vw, 60rem);
+    --project-image-h: clamp(10.5rem, 30svh, 18rem);
+    --project-title-size: clamp(1.3rem, 1.35vw, 1.75rem);
+    --project-desc-size: clamp(0.95rem, 1vw, 1.1rem);
+  }
+}
+
+@media (min-width: 1600px) and (min-height: 918px) {
+  :root {
+    /* e.g. 1920x1080, 1680x1050, 1632x918, 1600x1024: a touch larger */
+    --container-max-w: 1920px;
+
+    --hero-gap: clamp(2.5rem, 3.8vw, 3.75rem);
+    --hero-title-size: clamp(2.6rem, 4.4vw, 5.1rem);
+    --hero-desc-size: clamp(1.1rem, 1.2vw, 1.55rem);
+    --hero-visual-h: clamp(18rem, 52svh, 42rem);
+    --hero-visual-max-w: clamp(24rem, 58vw, 68rem);
+
+    --project-card-max-w: clamp(60rem, 74vw, 88rem);
+    --project-image-h: clamp(13rem, 34svh, 30rem);
+    --project-title-size: clamp(1.6rem, 1.35vw, 2.25rem);
+    --project-desc-size: clamp(1.05rem, 1vw, 1.4rem);
+    --carousel-arrow-offset: clamp(0.75rem, 2.75vw, 5rem);
+  }
+}
+
+/* Mobile sizes (portrait and small devices). */
+@media (max-width: 480px) {
+  :root {
+    --section-pad-y: clamp(1.5rem, 5svh, 2.75rem);
+    --hero-pad-y: clamp(1.5rem, 6svh, 2.75rem);
+
+    --hero-gap: clamp(1.5rem, 5vw, 2rem);
+    --hero-avatar-size: clamp(4rem, 22vw, 5.5rem);
+    --hero-title-size: clamp(1.75rem, 7vw, 2.25rem);
+    --hero-desc-size: clamp(0.9rem, 3.6vw, 1rem);
+    --hero-visual-h: clamp(12rem, 36svh, 16rem);
+    --hero-visual-max-w: 92vw;
+
+    --section-title-pad-b: clamp(1.25rem, 4vw, 2rem);
+    --project-card-max-w: 100%;
+    --project-image-h: clamp(8.5rem, 28svh, 11rem);
+    --carousel-arrow-size: 2.75rem;
+    --carousel-arrow-offset: 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --hero-title-size: clamp(1.6rem, 7.5vw, 2.05rem);
+    --hero-visual-h: clamp(11rem, 34svh, 14rem);
+    --project-image-h: clamp(8rem, 26svh, 10rem);
+  }
+}
+
+/* 4K screens (3840x2160). */
+@media (min-width: 3000px) and (min-height: 1800px) {
+  :root {
+    --container-max-w: 2200px;
+    --container-pad-x: clamp(1.5rem, 3vw, 5rem);
+
+    --hero-title-size: clamp(2.5rem, 3.2vw, 4.75rem);
+    --hero-desc-size: clamp(1.05rem, 1.1vw, 1.35rem);
+    --hero-visual-h: clamp(20rem, 50svh, 42rem);
+    --hero-visual-max-w: clamp(26rem, 54vw, 60rem);
+
+    --project-card-max-w: clamp(56rem, 70vw, 74rem);
+    --project-image-h: clamp(14rem, 34svh, 26rem);
+    --carousel-arrow-size: clamp(3rem, 2.5vw, 3.5rem);
+    --carousel-arrow-offset: clamp(1rem, 2vw, 4rem);
   }
 }

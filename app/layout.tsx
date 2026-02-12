@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import StarsCanvas from "@/components/main/StarBackground";
 import Navbar from "@/components/main/Navbar";
 import Footer from "@/components/main/Footer";
+import ViewportDebug from "@/components/dev/ViewportDebug";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-[#030014] overflow-y-scroll overflow-x-hidden pt-[var(--nav-height)]`}
       >
+        {process.env.NODE_ENV !== "production" && <ViewportDebug />}
         <StarsCanvas />
         <Navbar />
         {children}

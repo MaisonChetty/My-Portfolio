@@ -38,7 +38,7 @@ src={src}
 width={width}
 height={height}
 alt={alt}
-className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-20 lg:w-20 2xl:h-24 2xl:w-24"
+className="h-[clamp(3rem,4vw,5rem)] w-[clamp(3rem,4vw,5rem)]"
     />
   </motion.div>
   )

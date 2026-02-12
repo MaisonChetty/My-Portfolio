@@ -19,7 +19,7 @@ const ProjectCard = ({ image, title, description, url }: Props) => {
       aria-label={`Open project: ${title}`}
     >
       <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/6 to-white/[0.03] shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition-transform duration-300 will-change-transform group-hover:-translate-y-1 group-focus-visible:ring-2 group-focus-visible:ring-cyan-400/70">
-        <div className="relative aspect-[16/9] w-full overflow-hidden">
+        <div className="relative h-[var(--project-image-h)] w-full overflow-hidden">
           <Image
             src={image}
             alt={title}
@@ -30,9 +30,9 @@ const ProjectCard = ({ image, title, description, url }: Props) => {
           <div className="absolute inset-0 bg-gradient-to-t from-[#030014]/80 via-transparent to-transparent" />
         </div>
 
-        <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6 lg:p-8">
+        <div className="flex flex-1 flex-col gap-4 p-[clamp(1.25rem,1.8vw,1.75rem)]">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="text-xl font-semibold text-white sm:text-2xl lg:text-3xl">
+            <h3 className="text-[var(--project-title-size)] font-semibold leading-tight text-white">
               {title}
             </h3>
             <span className="mt-1 inline-flex rounded-full border border-white/10 bg-white/5 p-2 text-gray-200 opacity-70 transition-opacity group-hover:opacity-100">
@@ -40,7 +40,7 @@ const ProjectCard = ({ image, title, description, url }: Props) => {
             </span>
           </div>
 
-          <p className="line-clamp-4 text-sm leading-relaxed text-gray-200/80 sm:text-base lg:text-lg">
+          <p className="line-clamp-4 text-[var(--project-desc-size)] leading-relaxed text-gray-200/80">
             {description}
           </p>
         </div>
