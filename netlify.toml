@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "https://maisontchetty.netlify.app/*"
+  to = "https://maisonchetty.netlify.app/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://maisontchetty.netlify.app/*"
+  to = "https://maisonchetty.netlify.app/:splat"
+  status = 301
+  force = true
